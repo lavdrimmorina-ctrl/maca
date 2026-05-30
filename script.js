@@ -123,6 +123,7 @@ const noBtn = document.getElementById('no-btn');
 const confettiContainer = document.getElementById('confetti');
 
 yesBtn.addEventListener('click', () => {
+  document.getElementById('confetti').classList.add('show');
   // Celebration effect
   confettiContainer.innerHTML = '🎉💖💍💖🎉';
   // You could also trigger a real confetti animation (add a small library or a CSS keyframe)
