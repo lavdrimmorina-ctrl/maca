@@ -1,44 +1,276 @@
-body {
+/* ============================================
+   “Operation Forever” – Modern Proposal App
+   Fonts: Poppins + Dancing Script (Google Fonts)
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+/* ---------- Base & Body ---------- */
+* {
   margin: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* intentionally funny */
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-  height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
 }
 
+/* Animated floating hearts background */
+body::before {
+  content: '❤️ 💕 💖 💗 💝';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  white-space: pre-wrap;
+  opacity: 0.15;
+  animation: floatHearts 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes floatHearts {
+  0% { transform: translateY(100%) rotate(0deg); }
+  100% { transform: translateY(-100%) rotate(360deg); }
+}
+
+/* ---------- Overlays ---------- */
 .overlay {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  padding: 20px;
+  text-align: center;
+  transition: opacity 0.4s ease;
 }
 .overlay.show {
   display: flex;
 }
 
+/* ---------- Virus Alert Box ---------- */
 .alert-box {
-  background: #fff0f5;
-  border: 3px solid red;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 0 20px crimson;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 40px 35px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.5) inset;
+  max-width: 400px;
+  width: 90%;
 }
-#quarantine-btn { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+.alert-box h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #d81b60;
+  margin-bottom: 15px;
+}
+.alert-box p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+#quarantine-btn {
+  background: linear-gradient(135deg, #e91e63, #ad1457);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 18px rgba(233,30,99,0.35);
+}
+#quarantine-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(233,30,99,0.5);
+}
 
-.progress-container { width: 300px; background: #eee; border-radius: 10px; overflow: hidden; }
-#progress-bar { height: 30px; width: 0%; background: hotpink; transition: width 0.3s; }
+/* ---------- Progress Bar ---------- */
+.progress-container {
+  width: 300px;
+  max-width: 80%;
+  background: rgba(255,255,255,0.6);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+#progress-bar {
+  height: 28px;
+  width: 0%;
+  background: linear-gradient(90deg, #f06292, #ec407a, #d81b60);
+  border-radius: 30px;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 15px rgba(233,30,99,0.5);
+}
+#progress-text {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+  margin-top: 10px;
+  min-height: 24px;
+}
 
-#game-board { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; margin: 20px; }
-.card { width: 80px; height: 80px; background: #ff99cc; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 30px; }
-.card.matched { background: #ff66b2; pointer-events: none; }
+/* ---------- Memory Game ---------- */
+#game-overlay h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #ad1457;
+  margin-bottom: 15px;
+}
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 90px);
+  gap: 12px;
+  margin: 15px 0 20px;
+}
+.card {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(145deg, #f8bbd0, #f48fb1);
+  border-radius: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.4) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.card:active { transform: scale(0.95); }
+.card.matched {
+  background: linear-gradient(145deg, #ec407a, #d81b60);
+  color: white;
+  box-shadow: 0 0 20px rgba(216,27,96,0.6);
+  pointer-events: none;
+}
+/* subtle 3D flip effect if you want to replace emoji with photos later */
+.card img {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
-.buttons { position: relative; }
-.big-yes { font-size: 30px; padding: 20px 40px; margin: 10px; }
-.small-no { font-size: 12px; padding: 5px 10px; position: absolute; }
-/* Add confetti keyframes later */
+#game-message {
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+/* ---------- Proposal Screen ---------- */
+#proposal-overlay h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: #880e4f;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 10px rgba(255,255,255,0.7);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.buttons {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-yes {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 16px 50px;
+  border: none;
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  color: white;
+  border-radius: 60px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(233,30,99,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 1px;
+}
+.big-yes:hover {
+  transform: scale(1.07);
+  box-shadow: 0 15px 35px rgba(233,30,99,0.7);
+}
+
+.small-no {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px 25px;
+  border: 2px solid #bbb;
+  background: rgba(255,255,255,0.7);
+  color: #666;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative; /* base position, JS will set fixed */
+}
+.small-no:hover {
+  background: rgba(255,255,255,0.9);
+  border-color: #e91e63;
+  color: #e91e63;
+}
+
+/* Confetti burst (simple CSS) */
+#confetti {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  pointer-events: none;
+  animation: confettiRain 2s ease-out forwards;
+  display: none;
+}
+#confetti.show {
+  display: block;
+}
+@keyframes confettiRain {
+  0% { opacity: 1; top: 20%; }
+  100% { opacity: 0; top: -50%; }
+}
+
+/* ---------- Responsive for Mobile ---------- */
+@media (max-width: 600px) {
+  .alert-box h2 { font-size: 2rem; }
+  .big-yes { font-size: 1.4rem; padding: 14px 35px; }
+  #proposal-overlay h1 { font-size: 2.8rem; }
+  #game-board {
+    grid-template-columns: repeat(4, 70px);
+    gap: 8px;
+  }
+  .card {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+}
