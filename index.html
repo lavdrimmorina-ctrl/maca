@@ -3,42 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>System Notification</title>
+  <title>Daily Love Quest 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Fake virus alert overlay -->
-  <div id="virus-alert" class="overlay show">
-    <div class="alert-box">
-      <h2>⚠️ CRITICAL SYSTEM ALERT</h2>
-      <p>Love virus detected. Click to quarantine.</p>
-      <button id="quarantine-btn">Quarantine Now</button>
+  <div id="app">
+    <!-- Calendar Screen -->
+    <div id="calendar-screen" class="screen active">
+      <h1 class="title">Daily Love Quest</h1>
+      <p class="subtitle">One heart a day until forever</p>
+      <div id="calendar-grid"></div>
+      <div id="progress-bar-container">
+        <div id="progress-fill"></div>
+      </div>
+      <p id="progress-text">0 / 0 days completed</p>
     </div>
-  </div>
 
-  <!-- Fake progress bar overlay -->
-  <div id="progress-overlay" class="overlay">
-    <div class="progress-container">
-      <div id="progress-bar"></div>
-      <p id="progress-text"></p>
+    <!-- Level Screen -->
+    <div id="level-screen" class="screen">
+      <div id="level-header">
+        <button id="back-btn">← Calendar</button>
+        <span id="level-date-display"></span>
+      </div>
+      <div id="level-content"></div>
     </div>
-  </div>
 
-  <!-- Memory game overlay -->
-  <div id="game-overlay" class="overlay">
-    <h2>Prove you're human... or in love ❤️</h2>
-    <div id="game-board"></div>
-    <p id="game-message"></p>
-  </div>
-
-  <!-- Final proposal overlay -->
-  <div id="proposal-overlay" class="overlay">
-    <h1>Will you marry me?</h1>
-    <div class="buttons">
-      <button id="yes-btn" class="big-yes">YES! 💍</button>
-      <button id="no-btn" class="small-no">No</button>
+    <!-- Proposal Overlay (final day) -->
+    <div id="proposal-overlay" class="overlay">
+      <h1>Will you marry me?</h1>
+      <div class="buttons">
+        <button id="yes-btn" class="big-yes">YES! 💍</button>
+        <button id="no-btn" class="small-no">No</button>
+      </div>
+      <div id="confetti"></div>
     </div>
-    <div id="confetti"></div>
   </div>
 
   <script src="script.js"></script>
