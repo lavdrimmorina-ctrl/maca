@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* intentionally funny */
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+}
+.overlay.show {
+  display: flex;
+}
+
+.alert-box {
+  background: #fff0f5;
+  border: 3px solid red;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px crimson;
+}
+#quarantine-btn { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+
+.progress-container { width: 300px; background: #eee; border-radius: 10px; overflow: hidden; }
+#progress-bar { height: 30px; width: 0%; background: hotpink; transition: width 0.3s; }
+
+#game-board { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; margin: 20px; }
+.card { width: 80px; height: 80px; background: #ff99cc; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+.card.matched { background: #ff66b2; pointer-events: none; }
+
+.buttons { position: relative; }
+.big-yes { font-size: 30px; padding: 20px 40px; margin: 10px; }
+.small-no { font-size: 12px; padding: 5px 10px; position: absolute; }
+/* Add confetti keyframes later */
